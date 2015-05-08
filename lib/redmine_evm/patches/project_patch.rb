@@ -21,7 +21,7 @@ module RedmineEvm
     module ProjectInstanceMethods
 
       def filter_excluded_issues baseline_id
-        issues.where("issues.id NOT IN (SELECT original_issue_id as id FROM baseline_issues WHERE exclude = 1 AND baseline_id = ?)", baseline_id)
+        issues.where("issues.id NOT IN (SELECT original_issue_id as id FROM baseline_issues WHERE exclude = ? AND baseline_id = ?)", true, baseline_id)
       end
 
       def actual_cost baseline_id
